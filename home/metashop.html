@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .titleArea{
+        margin: 0 0 15px;
+        width: 760px;
+        height: 80px;
+        border-bottom: 2px solid black;
+        
+    }
+    .titleArea h2 {
+        display: inline-block;
+        padding: 15px 15px 8px;
+        font-size: 25px;
+    }
+    .titleArea p {
+        display:inline-block;
+        margin: 0 0 0 6px;
+        padding: 0 0 0 10px; color: gray;
+        font-size: 15px;
+    }
+    .menu{
+        border: 5px solid rgb(209, 202, 202);
+        padding: 10px 0 10px 10px;
+        height: 180px;
+        width: 700px;
+        }
+    div.image{
+        width: 180px;
+        height: 180px;
+    }
+    img{
+        width: 180px;
+        height: 180px;
+    } 
+    div.information{
+        position: relative;
+        left: 200px;
+        bottom: 150px;
+    }
+   
+
+    </style>
+</head>
+<body>
+    <div id="content">   
+        <div class="titleArea">
+            <h2>상품 사용후기</h2> 
+            <p>사용후기 입니다.</p>
+        </div>
+        <div class="menu">
+            <div class="image">
+                <a href="/product/밀알케이-엠팝콘-로스터리-판타지-믹스/1307/">
+                <img src="//metashop.co.kr/web/product/tiny/202110/a5cb77c21fd54418e6149eacb5e85c1e.jpg" 
+                alt="" onerror="this.src='//img.echosting.cafe24.com/thumb/75x75.gif'"></a>
+            </div>
+            <div class="information">
+                <h3><a href="/product/밀알케이-엠팝콘-로스터리-판타지-믹스/1307/">[밀알케이] 엠팝콘 로스터리 판타지 믹스</a></h3>
+                <p class="price">5,500원</p>
+                <input type="button" value="상품 상세보기"><a href="/product/밀알케이-엠팝콘-로스터리-판타지-믹스/1307/"
+                class="btnEm" title="새창으로 이동"></a></p>
+            </div>
+        </div>
+        <form>
+            <div class="text">
+                <table>
+                <tbody>
+                <tr>
+                    <th>제목</th>
+                    <td>완전 맛있어요</td>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <td>한****</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="detail">
+                        <img src="//metashop.co.kr/file_data/chosunmedia/2021/11/17/f606c08e8061b37da8f34222f909a2d0.JPG" 
+                        border="0" alt="">
+                        <div class="article">
+                        <p>또 사먹으려구요</p>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="attach ">
+                    <th scope="row">첨부파일</th>
+                        <td><a href="#none" onclick="BOARD_READ.file_download
+                        ('/exec/front/Board/download/?no=3648&amp;realname=2021/11/17/f606c08e8061b37da8f34222f909a2d0.JPG&amp;filename=팝콘.JPG');">팝콘.JPG</a> </td>
+                </tr>
+                <tr class=" ">
+                    <th scope="row">비밀번호</th>
+                         <td><input id="password" name="password" fw-filter="" fw-label="비밀번호" fw-msg="" onkeydown="if (event.keyCode == 13 || event.which == 13) 
+                         { return false; }" value="" type="password"> <span class="ec-base-help txtInfo">삭제하려면 비밀번호를 입력하세요.</span></td>
+                 </tr>
+            </tbody>
+            </table>
+            </div>
+        </form>
+        <div class="last">
+            <span class="gLeft">
+                <input type="button" value="목록">
+            </span>
+            <span class="gRight">
+                <input type="button" onclick="BOARD_READ.article_delete('BoardDelForm','4');" value="삭제"></a>
+                <input type="button" a href="/board/product/modify.html?board_act=edit&amp;no=3648&amp;board_no=4" value="수정"></a>
+            </span>
+        </div>
+    </div>
+    
+</body>
+</html>
