@@ -4,72 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>javascript/basic.html</title>
-    <!-- <script src="basic.js"></script>-->
+    <title>Document</title>
+    <link rel="stylesheet" href="calendar.css">
     <script>
-
-        var kim = {
-            name: 'Kim',
-            age: 25,
-            phone: '010-1111-2222'
-        }
-
-        var lee = {
-            name: 'Lee',
-            age: 28,
-            phone: '010-1111-3333'
-
-        }
-        
-        var park = {
-            name: 'Park',
-            age: 33,
-            phone: '010-1111-5555'
-        }
-
-        for( var field in park){
-            console.log(field, park[field]);
-        }
-
-        console.clear();
-
-        var objAry = [kim,lee,park];
-        document.write('<table border="1">');
-
-        for( var obj of objAry){//향상폴문..
-            document.write('<tr>');
-            for(var field in obj){
-                console.log(`${field},${obj[field]}`);
-                document.write('<td>');
-                document.write(`${obj[field]}`);
-                document.write('</td>');
-            }
-            console.log('----------------------------');
-            document.write('</tr>');
-        }
-        document.write('</table>');
-       
-
+     
     </script>
 </head>
+
 <body>
-    <table border="1">
-        <tr>
-            <td>Kim</td>
-            <td>25</td>
-            <td>010-1111-2222</td>
-        </tr>
-        <tr>
-            <td>Lee</td>
-            <td>28</td>
-            <td>010-1111-3333</td>
-        </tr>
-        <tr>
-            <td>Park</td>
-            <td>33</td>
-            <td>010-1111-5555</td>
-        </tr>
-    </table>
+    <input type="text" id="user_id" value="12345"><br>
+    <button onclick="getIdFunc()">id값가져오기</button>
+
+
+    <button onclick="drawTable()">클릭</button>
+    <div id = 'show'>
+    </div>
+    <script>  
+        function getIdFunc(){
+            var userId = document.getElementById('user_id');
+            console.log(userId.value);
+        }
+
+       var students = [{
+        name: "홍길동",
+        math: 80,
+        eng: 90,
+        grade: '1학년1반',
+        avg: 85
+    },
+    {
+        name: "김수미",
+        math: 85,
+        eng: 85,
+        grade: '1학년2반',
+        avg: 90
+    },
+    {
+        name: "김민수",
+        math: 90,
+        eng: 75,
+        grade: '1학년3반',
+        avg: 80
+    }
     
+    ];
+        // var divshow =document.createElement('divshow');
+        // divshow.setAttribute('id','show');
+
+        function drawTable(){
+        var table = document.createElement('table');
+        table.setAttribute('border','1');
+        var thead = document.createElement('thead');
+
+        //타이틀 생성
+        var tr = document.createElement('tr');
+        for(var val in students[0]){
+            var td = document.createElement('th');
+            td.textContent=val;
+            tr.appendChild(td);
+        }
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
+        //데이터 부분
+        var tbody = document.createElement('tbody');
+        for(student of students){
+            var tr = document.createElement('tr');
+            for( var field in student){
+                var td =document.createElement('td');
+                td.textContent =student[field];
+                tr.appendChild(td);
+            }
+            tbody.appendChild(tr);
+        }
+        table.appendChild(tbody);
+
+        //화면 보여주기
+        var divShow = document.getElementsByTagName('div');
+        divShow[0].appendChild(table);
+    }
+    </script>
 </body>
 </html>

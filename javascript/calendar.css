@@ -1,0 +1,19 @@
+thead th{
+    background-color: gray;
+    color: #fff;
+}
+
+tbody>tr>td:nth-child(1){
+    background-color: red;
+    color: #fff;
+}
+tbody>tr>td:nth-child(7){
+    background-color: blue;
+    color: #fff;
+}
+
+caption{
+    background-color: wheat;
+    width: 100px;
+    margin: auto;
+}

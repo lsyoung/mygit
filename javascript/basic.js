@@ -96,3 +96,46 @@ obj2 = {
     name: 'Kim'
 }
 console.log(obj1);
+
+var kim = {
+    name: 'Kim',
+    age: 25,
+    phone: '010-1111-2222'
+}
+
+var lee = {
+    name: 'Lee',
+    age: 28,
+    phone: '010-1111-3333'
+
+}
+
+var park = {
+    name: 'Park',
+    age: 33,
+    phone: '010-1111-5555'
+}
+
+for( var field in park){
+    console.log(field, park[field]);
+}
+
+console.clear();
+
+var objAry = [kim,lee,park];
+
+//배열일 경우 for..of반복문
+document.write('<table border="1">');
+
+for( var obj of objAry){//향상폴문..
+    document.write('<tr>');
+    for(var field in obj){
+        console.log(`${field},${obj[field]}`);
+        document.write('<td>');
+        document.write(`${obj[field]}`);
+        document.write('</td>');
+    }
+    console.log('----------------------------');
+    document.write('</tr>');
+}
+document.write('</table>');
