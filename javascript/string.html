@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string.html</title>
+    <script>
+        var str =`Lorema ipsum dolor sit amet, consectetur adipisicing elit.`;
+        console.log(str.length);
+        var newStr = str.slice(2,5);
+        newStr = str.substring(2,8);// slice랑 같으나 -사용x
+        newStr = str.substr(5,1);
+        //newStr = str.replace(/lorem/i,'로렘'); //대문자소문자상관없이 찾음
+        //newStr = str.charCodeAt(6);
+        //newStr = str[8];
+        console.log(newStr);
+
+        var person_no = [
+            '950403-1234567',
+            '950403 2234567',
+            '010403/3234567',
+            '2204034234567',
+            '950403*1234567'
+        ];
+
+        var gen = check_gender('880101-4234567');
+        console.log(gen);
+
+        // function check_gender(str){
+
+        //     var gender = str.slice(-7,-6);
+        //     console.log(str.substr(0,2))
+        //     if (str.substr(0,2) > 21 ){
+        //         if (gender == '1') {
+        //             return '남';
+        //         } else if (gender == '2'){
+        //             return '여';
+        //         } 
+        //     } else  {   
+        //         if(gender == '3'){
+        //             return '남';
+        //         }else if (gender == '4'){
+        //             return '여';
+        //         }
+        //     } 
+        // }
+
+
+        function check_gender(birth){
+
+            var spec = ['*','/','-'];
+
+            var yy = birth.substring(0,2);
+            var over2000 = yy > 21 ? false : true ;
+            var gen =birth.slice(-7,-6);
+            var gender = '';
+            if( over2000 && gen =='3')
+                gender = '남자';
+            else if (over2000 && gen =='4')
+                gender = '여자';    
+            else if (!over2000 && gen =='1')
+                gender = '남자';
+            else if (!over2000 && gen =='2')
+                gender = '여자'; 
+
+            return gender || '잘못된 번호입니다.';
+        }
+    </script>
+</head>
+<body>
+    주민번호: <input type="text" name="" id="jumin"><br>
+    남:<input type="radio" name="gender" value="남자">
+    여:<input type="radio" name="gender" value="여자">
+    잘못된 번호 : <input type="radio" name="gender" value="잘못된 번호입니다.">
+
+    <script>
+        var spec = ['*','-','/','$',''];
+        document.getElementById('jumin'). addEventListener('change',function(){
+            console.log(this.value);
+            var birth = this.value;
+            for (var str of spec) {
+                birth = birth.replace(str,'');
+            }
+            if (birth.length != 13 ){
+                console.log('잘못된 값');
+                return;
+            }
+
+            var gen = check_gender(birth);
+            var genders = document.querySelector('input[value=' + gen + ']');
+            genders.checked = true;
+            // if (gen == '남자')
+            //     genders[0].checked = true;
+            // else if (gen == '여자')
+            //     genders[1].checked = true;
+            // else 
+            //     genders[2].checked = true;
+
+              console.log(gen);
+        });
+    </script>
+</body>
+</html>

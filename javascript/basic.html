@@ -5,84 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="calendar.css">
     <script>
-     
+        var fruits = ['Apple', 'Banana', 'Cherry'];
+
+        //addEvent는 마지막에 console 실행하게함
+        window.addEventListener('DOMContentLoaded',function(){
+
+            var show = document.getElementById('show'); //Element값을 하나만 불러옴 배열사용x
+            console.log(show.textContent);
+
+            var shows = document.getElementsByTagName('div');
+            console.log(shows[2].textContent);//collection: Elements 배열 사용 여러값불러옴
+
+            var cls = document.getElementsByClassName('show');
+            console.log(cls[0].textContent);
+
+            var selector = document.querySelectorAll('ol>li');
+            console.log(selector)   
+            selector[0].textContent = '사과'; //ol>li 0번째 인덱스 사과로 변경
+
+            var li = document.createElement('li');
+            li.textContent = 'Melon';
+
+            var ol = document.querySelector('ol');
+            ol.appendChild(li);
+            
+            var div = document.createElement('div');
+            div.setAttribute('id','last');
+            div.appendChild(ol);
+
+        });
+        
     </script>
+  
 </head>
-
 <body>
-    <input type="text" id="user_id" value="12345"><br>
-    <button onclick="getIdFunc()">id값가져오기</button>
-
-
-    <button onclick="drawTable()">클릭</button>
-    <div id = 'show'>
-    </div>
-    <script>  
-        function getIdFunc(){
-            var userId = document.getElementById('user_id');
-            console.log(userId.value);
-        }
-
-       var students = [{
-        name: "홍길동",
-        math: 80,
-        eng: 90,
-        grade: '1학년1반',
-        avg: 85
-    },
-    {
-        name: "김수미",
-        math: 85,
-        eng: 85,
-        grade: '1학년2반',
-        avg: 90
-    },
-    {
-        name: "김민수",
-        math: 90,
-        eng: 75,
-        grade: '1학년3반',
-        avg: 80
-    }
+    <div id ="show">Hello1</div>
+    <div class="show">Hello2</div>
+    <div class="show">Hello3</div>
+    <p class="show">Hello4</p>
     
-    ];
-        // var divshow =document.createElement('divshow');
-        // divshow.setAttribute('id','show');
+    <ul>
+        <li id='apple'>Apple</li>
+        <li id='banana'>Banana</li>
+        <li id='cherry'>Cherry</li>
+    </ul>
+    <ol>
+        <li id='apple'>Apple</li>
+        <li id='banana'>Banana</li>
+        <li id='cherry'>Cherry</li>
+    </ol>
 
-        function drawTable(){
-        var table = document.createElement('table');
-        table.setAttribute('border','1');
-        var thead = document.createElement('thead');
-
-        //타이틀 생성
-        var tr = document.createElement('tr');
-        for(var val in students[0]){
-            var td = document.createElement('th');
-            td.textContent=val;
-            tr.appendChild(td);
-        }
-        thead.appendChild(tr);
-        table.appendChild(thead);
-
-        //데이터 부분
-        var tbody = document.createElement('tbody');
-        for(student of students){
-            var tr = document.createElement('tr');
-            for( var field in student){
-                var td =document.createElement('td');
-                td.textContent =student[field];
-                tr.appendChild(td);
-            }
-            tbody.appendChild(tr);
-        }
-        table.appendChild(tbody);
-
-        //화면 보여주기
-        var divShow = document.getElementsByTagName('div');
-        divShow[0].appendChild(table);
-    }
-    </script>
+    <!--
+    <div>
+        <div id="last">Last</div>
+    </div>
+    -->
 </body>
 </html>

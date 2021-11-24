@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show {
+            width: 500px;
+            height: 200px;
+            border: 2px solid gray;
+        }
+        .item {
+            display: inline-block;
+            width: 110px;
+            background-color: yellow;
+            border: 1px solid blue;
+            margin: 1px;
+        }
+        .clear {
+            display: inline-block;
+            width: 110px;
+            background-color: white;
+            color: white;
+            border: 1px solid blue;
+            margin: 1px;
+        }
+        #timer{
+            display: inline-block;
+            width: 50px;
+            background-color: rgb(167, 167, 167);
+            color: white;
+            text-align: right;
+            padding-right: 3px;
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            var str = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam illum dicta provident, ab animi laborum a ut, impedit officiis voluptates obcaecati possimus autem perferendis atque nobis dolore libero, dolorem iure.`
+            var strAry = str.split(' ');
+            var show = document.getElementById('show');
+            strAry.forEach(item => {
+                var div = document.createElement('div');
+                div.setAttribute('class', 'item');
+                div.textContent = item;
+                show.appendChild(div);
+            });
+            //시간변경
+            var remainTime = 3000;
+            document.getElementById('timer').textContent = remainTime;
+            var interval = setInterval(function(){
+                document.getElementById('timer').textContent = --remainTime;
+                if (!remainTime) {
+                    var items = document.querySelectorAll('.item');
+                    if (!items.length) {
+                        alert('success');
+                    } else {
+                        alert('fail')
+                    }
+                    clearInterval(inverval);
+                }
+            },1000);
+
+        });
+        function removeItem(e){
+                console.log('onchange');
+                var val = e.target.value;
+                var items = document.querySelectorAll('.item');
+                items.forEach(item => {
+                    if(item.textContent == val){
+                        item.setAttribute('class','clear');
+                    }
+                });
+                e.target.value = '';
+            }
+            function addItem(e){
+                var val = e.target.value;
+                var items = document.querySelectorAll('.item');
+                
+                for ( var i =0 ; i<items.length; i++){
+                     if(items[i].textContent == val){
+
+                     }
+                     return;
+                }
+              
+                var div = document.createElement('div');
+                div.setAttribute('class', 'item');
+                div.textContent = val;
+                show.appendChild(div);
+                e.target.value = '';
+            }
+    </script>
+</head>
+<body>
+    <div id="show"></div>
+    입력:<input type="text" onchange="addItem(event)">
+    <p id='timer'>0</p>
+</body>
+</html>
