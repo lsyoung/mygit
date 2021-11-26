@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        div.container{
+            display: grid;
+            grid-template-columns: 300px 500px 300px;
+            grid-template-rows: 200px 300px 150px;
+        }
+        div.mac{
+            border: 2px solid gray;
+        }
+        div.home{
+            grid-column: 1/5;
+        }
+        div.nav{
+            grid-column: 1/2;
+            grid-row: 2/4;
+        }
+        div.contents{
+            grid-column: 2/4;
+            grid-row: 2/4;
+        }
+        div.aside{
+            grid-column: 4/5;
+            grid-row: 2/4;
+        }
+        div.footer{
+            grid-column: 1/5;
+        }
+        div.image img{
+            float: left;
+            width: 200px;
+            height: 170px;
+            margin-top: 15px;
+        }
+        div.bored{
+            float: right;
+            padding: 130px 2px;
+            width: 25vw;
+        }   
+        div.bored>form>input[type="button"]{
+             font-size: 15px;
+             height: 25px;
+             width: 30%;
+             margin-bottom: 5px;
+        }
+        div.center {
+            width: 15vw;
+            padding: 5vw;
+            margin-left: 30vw;
+            font-size: 30px;
+        }
+        ul{
+            float: left;
+            margin: 20px 0 0 30px;
+        }
+        div.nav > ul{
+            list-style-type: none;
+        }
+        div.nav>ul>li{
+            width: 130px;
+            height: 30px;
+            margin-bottom: 5px;
+            background-color:#9fd7fd;
+            padding: 5px 0 0 10px;
+        }
+        div.nav li:hover{
+            background-color: rgb(74, 145, 252);
+            color: cornsilk;
+        }
+        div.nav ul li div.sub{
+            display: none;
+        }
+        div.nav ul li:hover div.sub{
+            display: block;
+        }
+        div.nav ul div.sub{
+            position: relative;
+            left: 100px;
+            top: -20px;
+        }
+        div.nav ul li div p{
+            width: 150px;
+            height: 30px;
+            background-color: rgb(132, 174, 252);
+            margin-bottom: 2px;
+            padding: 5px;
+        }
+
+        div.contents h2{
+            margin: 2vw 0 0 22vw;
+        }
+        div.item img{
+            margin-left: 17vw;
+            width: 300px;
+        }
+        div.aside img{
+            width: 100%;
+            height: 450px;
+        }
+        div.footer{
+            float: left;
+        }
+        div.footer p{
+            margin-left: 10px;
+            font-size: 13px;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body>
+     <div class="container">
+         <div class="mac home">
+             <div class="image">
+                 <a href="#"><img src="../mygit/images/mac.png"></a>
+             </div>
+             <div class="bored">
+                <form>
+                    <input type="button" value="게시판">
+                    <input type="button" value="상품문의">
+                    <input type="text" placeholder="ID">
+                    <input type="password" placeholder="password">
+                    <input type="submit" value="로그인">
+                </form>
+            </div>
+            <div class="center">
+                <h1>McDonald's</h1>
+           </div>
+         </div>
+         <div class="mac nav">
+            <ul>
+                <li>Menu
+                    <div class="sub">
+                    <p>하위메뉴1</p>
+                    <p>하위메뉴2</p>
+                    <p>하위메뉴3</p>
+                    </div>
+                </li>
+                <li>Store
+                    <div class="sub">
+                        <p>하위메뉴1</p>
+                        <p>하위메뉴2</p>
+                        <p>하위메뉴3</p>
+                        </div>
+                </li>
+                <li>New
+                    <div class="sub">
+                        <p>하위메뉴1</p>
+                        <p>하위메뉴2</p>
+                        <p>하위메뉴3</p>
+                        </div>
+                </li>
+                <li>Story
+                    <div class="sub">
+                        <p>하위메뉴1</p>
+                        <p>하위메뉴2</p>
+                        <p>하위메뉴3</p>
+                        </div>
+                </li>
+            </ul>    
+            </div>
+            <div class="mac contents">
+                <h2>McDonald's</h2>
+                <div class="item">
+                    <img src="../mygit/images/mac2.png" alt="">
+                </div>
+            </div>
+            <div class="mac aside">
+                <img src="../mygit/images/mac3.png" alt="">
+            </div>
+            <div class="mac footer">
+                <p>한국맥도날드(유)<br>
+                대표이사: 앤토니 마티네즈<br>
+                사업자등록번호: 101-81-26409<br>
+                전화주문: 1600-5252<br>
+                COPYRIGHT © 2019 ALL RIGHTS RESERVED BY McDonald's.</p>
+            </div>
+         </div>  
+</body>
+</html>

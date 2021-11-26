@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            background-color: greenyellow;
+        }
+    </style>
+    <script src="./createTable.js"></script>
+    <script>
+        var fields = ['id', 'sido', 'sigungu', 'centerName', 'phoneNumber', 'address'];
+        // var fields = ['name', 'phone', 'score'];
+        // var persons = [{name:'홍길동', phone:'010-1234',score:80},
+        //                {name:'김길동', phone:'010-1111',score:60},
+        //                {name:'박길동', phone:'010-2222',score:70},
+        //                {name:'최길동', phone:'010-3333',score:90}
+        //              ];
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var totalData = [];
+            var startCnt = 0,
+                endCnt = 0;
+
+            function showPage(e) {
+                var lbl = e.target.textContent; //10page =>91~100
+                //console.log(lbl);
+
+                //최초 1페이지가 보여지도록
+                if (!lbl) {
+                    lbl = '1';
+                }
+                //버튼을 클릭했는지 체크
+                if (e.target.nodeType == 1) {
+                    var actives = document.querySelectorAll('#paging>button');
+                    for(var i = 0; i<actives.length; i++){
+                        actives[i].setAttribute('class', '');
+                    }
+                    e.target.setAttribute('class', 'active');
+                }
+                startCnt = (lbl - 1) * 10 + 1; //1 ~ 10 : 0~9
+                endCnt = lbl * 10;
+
+                var filterData = totalData.filter((item, ind) => {
+                    return ind >= startCnt - 1 && ind < endCnt;
+                });
+                //이미있는 테이블
+                var tableExist = document.querySelector('#show>table');
+                if (tableExist) {
+                    tableExist.remove();
+                }
+                var table = createTable(fields, filterData);
+                document.getElementById('show').appendChild(table);
+            }
+
+            var url =
+                'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=JSON&serviceKey=9%2FLyU7wjF4QK07Ae4BnX35uuRQMeLT6nMlM0%2FLynxxcEm2ILtSXorZAAmUjoY3CyTQ%2BdFusEn0VjmhzVnGxnVA%3D%3D';
+            var xhtp = new XMLHttpRequest();
+
+            xhtp.open('get', url);
+            xhtp.send();
+            xhtp.onload = function () {
+                var data = JSON.parse(xhtp.responseText);
+
+                // console.log(data.totalCount); //284=> 284/10
+                //페이지 처리를 위한 버튼 갯수만큼 페이지
+                var totalPage = Math.ceil(data.totalCount / 10);
+                for (var i = 1; i <= totalPage; i++) {
+                    var butn = document.createElement('button');
+                    butn.textContent = i;
+                    butn.addEventListener('click', showPage);
+                    document.getElementById('paging').appendChild(butn);
+                }
+                //페이지
+                totalData = data.data;
+                showPage(event);
+                // var table = createTable(fields, data.data);
+                // document.getElementById('show').appendChild(table);
+            }
+
+        })
+    </script>
+</head>
+
+<body>
+
+    <div id="paging"></div>
+    <div id='show'></div>
+
+</body>
+
+</html>
