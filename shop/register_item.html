@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+    	CKEDITOR.replace('item_description',{
+    		filebrowserUploadUrl: '../ShopItemPutServlet'
+    	});
+    })
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>상품등록</legend>
+        <form action="../ShopItemServlet" name="registerItem" enctype="multipart/form-data" method="post">
+            상품코드 : <input type="text" name="item_code" value="P002"><br>
+            상품명 : <input type="text" name="item_name" value="장난감"><br>
+            상품설명 : <textarea name="item_description" cols="30" rows="3">장난감</textarea><br>
+            평점 : <input type="text" name="like_it" value="4.5"><br>
+            상품가격 : <input type="number" name="origin_price" value="10000"><br>
+            할인가격 : <input type="number" name="sale_price" value="5000"><br>
+            이미지 : <input type="file" name="image"><br>
+            <input type="submit" value="저장"><input type="reset" value="취소">
+        </form>
+    </fieldset>
+    <h3>상품리스트</h3>
+    <div id="show">
+    </div>
+
+    <script>
+         var frm = document.forms.registerItem;
+
+        frm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            console.log(e.target);
+            var data = new FormData(frm);
+
+            var xhtp = new XMLHttpRequest();
+            xhtp.open('post', frm.getAttribute('action'));
+            xhtp.send(data);
+            xhtp.onload = function () {
+                console.log('호출성공')
+
+            }
+        }); 
+
+
+        //화면에 보여주는 부분
+        var ajax = new XMLHttpRequest();
+        //ajax.open('get', frm.getAttribute('action'));
+        ajax.open('get', '../ShopItemServlet');
+        ajax.send();
+        ajax.onload = function () {
+
+            var result = JSON.parse(ajax.responseText);
+            console.log(result);
+
+            var fields = ['itemCode', 'itemName', 'itemDesc', 'likeIt', 'originPrice', 'salePrice'];
+            var name = ['상품코드', '상품명', '상품설명', '평점', '상품가격', '할인가격', '이미지'];
+
+            var table = document.createElement('table');
+            table.setAttribute('border', '1');
+            document.getElementById('show').appendChild(table);
+
+            var thead = document.createElement('thead');
+            var tr = document.createElement('tr');
+            thead.appendChild(tr);
+
+            name.forEach((item) => {
+                var th = document.createElement('th');
+                th.textContent = item;
+                tr.appendChild(th);
+            });
+
+            // tbody 작성 : 데이터 건수 만큼 돌면서 가져와야 한다.
+            var tbody = document.createElement('tbody');
+            result.forEach(item => {
+
+                var tr = document.createElement('tr');
+                tr.setAttribute('id', item.itemCode);
+                fields.forEach(field => {
+                    var td = document.createElement('td');
+                    td.textContent = item[field];
+                    tr.appendChild(td);
+
+                });
+                var td = document.createElement('td');
+                var img = document.createElement('img');
+                img.setAttribute('src', '../upload/' + item.image);
+                td.appendChild(img);
+                tr.appendChild(td);
+
+                // var img = document.createElement('img');
+                // img.setAttribute('src', '../upload/' + data[0].image + '');
+                // img.style.display = 'inline-block';
+                // img.style.width = '100px';
+
+                tbody.appendChild(tr);
+            }) // 리스트 보여주는 부분
+
+            table.append(thead, tbody);
+        }
+    </script>
+
+</body>
+
+</html>

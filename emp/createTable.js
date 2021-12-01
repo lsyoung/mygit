@@ -3,6 +3,8 @@ function createTable(titleAry, dataAry) {
     //tr생성 함수
     function makeRow(obj) {
         var tr = document.createElement('tr');
+		tr.setAttribute('id',obj.employeeId);
+		//console.log(obj.employeeId);
         titleAry.forEach(field => {
             var td = document.createElement('td');
             td.textContent = obj[field];
