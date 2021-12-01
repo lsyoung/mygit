@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		.comment {
+			border: 1px dotted blue;
+			margin: 5px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(onreadyFnc);
+
+		function onreadyFnc() {
+			$.ajax({
+				url: '../CommentServlet',
+				method: 'get',
+				dataType: 'json',
+				success: loadCommentResult,
+				error: function (error) {
+					console.log(error);
+					window.alert(`error: ${error.status}, Message: ${error.statusText}`);
+				}
+			});
+		}
+		//리스트 가지고 성공 실행할 콜백함수
+		function loadCommentResult(result) {
+			console.log(result);
+			if (result.retCode == 'Success') {
+				var data = result.retVal;
+				data.forEach(item => {
+					$('#commentList').append(makeCommentView(item));
+				});
+
+			} else {
+				window.alert(result.retVal);
+			}
+		}
+		//데이터 한건 가져와서 출력하는 부분
+		function makeCommentView(comment) {
+			var div = $('<div>');
+			$(div).attr('id', comment.id);
+			$(div).addClass('comment');
+			$(div).append( //
+				$('<strong>').text(comment.name),
+				' ' + comment.content,
+				$('<input>').attr('type', 'button').val('수정').click(viewUpdateForm),
+				$('<input>').attr('type', 'button').val('삭제').click(confirmDeletion)
+			);
+			return div;
+		}
+
+		//수정버튼을 누르면 실행할 함수
+		function viewUpdateForm() {
+
+		}
+		//삭제버튼
+		function confirmDeletion() {
+
+		}
+		//게시판 등록
+		function addComment() {
+			$.ajax({
+				url: '../CommentServlet',
+				method: 'post',
+				data: {
+					cmd: 'insert',
+					name: $('form[name="addForm"]>input[type="text"]').val(),
+					content: $('form[name="addForm"]>textarea[name="content"]').val()
+				},
+				dataType: 'json',
+				success: addResult,
+				error: function () {
+					window.alert(`error: ${error.status}, Message: ${error.statusText}`);
+				}
+			});
+		}
+		//등록 콜백함수
+		function addResult(result) {
+			var obj = result.retVal;
+			$('#commentList').append(makeCommentView(obj));
+			//초기화
+			$('form[name="addForm"]>input[type="text"]').val("");
+			$('form[name="addForm"]>textarea').val("");
+			$('form[name="addForm"]>input[type="text"]').focus();
+		}
+	</script>
+</head>
+
+<body>
+	<div id="commentList"></div>
+
+	<!-- 글등록화면 -->
+	<div id="commentAdd">
+		<form action="" name="addForm">
+			이름: <input type="text" name="name" size="10"><br>
+			내용: <textarea name="content" cols="20" rows="2"></textarea><br>
+			<input type="button" value="등록" onclick="addComment()">
+		</form>
+	</div>
+	<!-- 글 수정화면 -->
+	<div id="commentUpdate" style="display:none">
+		<form action="" name="updateForm">
+			<input type="hidden" name="id" value="">
+			이름: <input type="text" name="name" size="10"><br>
+			내용: <textarea name="content" rows="2" cols="20"></textarea><br>
+			<input type="button" value="변경" onclick="updateComment()">
+			<input type="button" value="취소" onclick="cancelUpdate()">
+		</form>
+	</div>
+</body>
+
+</html>
