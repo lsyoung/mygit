@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Shop Homepage - Start Bootstrap Template</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+</head>
+<style>
+h5.fw_bolder {
+	text-align: center;
+	font-weight: bolder;
+}
+</style>
+<body>
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="#!">Start Bootstrap</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#!">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="#!">All Products</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="#!">Popular Items</a></li>
+							<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+						</ul></li>
+				</ul>
+				<form class="d-flex">
+					<button class="btn btn-outline-dark" type="submit">
+						<i class="bi-cart-fill me-1"></i> Cart <span
+							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Shop in style</h1>
+				<p class="lead fw-normal text-white-50 mb-0">With this shop
+					hompeage template</p>
+			</div>
+		</div>
+	</header>
+	<!-- Section-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 mt-5">
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+
+				<div class="col mb-5">
+					<div class="card h-100">
+						<!-- Sale badge-->
+						<div class="badge bg-dark text-white position-absolute"
+							style="top: 0.5rem; right: 0.5rem">Sale</div>
+						<!-- Product image-->
+						<img class="card-img-top"
+							src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+						<!-- Product details-->
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- Product name-->
+								<h5 class="fw-bolder">Special Item</h5>
+								<!-- Product reviews-->
+								<div
+									class="d-flex justify-content-center small text-warning mb-2">
+									<!-- 4.5 => math.floor(4.5) => 4 => 4.5-4 = 0.5 or substring -->
+									<div class="bi-star-fill"></div>
+									<div class="bi-star-fill"></div>
+									<div class="bi-star-fill"></div>
+									<div class="bi-star-fill"></div>
+									<div class="bi-star-half"></div>
+								</div>
+								<!-- Product price-->
+								<span class="text-muted text-decoration-line-through">$20.00</span>
+								$18.00
+							</div>
+						</div>
+						<!-- Product actions-->
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<script>
+					function makeOneProduct(obj) {
+						var div = document.createElement('div');
+						div.className = "col mb-5";
+						//div.setAttribute('class', 'col mb-5');
+
+						var div_card = document.createElement('div');
+						div_card.className = "card h-100";
+
+						if (obj.salePrice != 0) {
+							var div_badge = document.createElement('div');
+							div_badge.className = "badge bg-dark text-white position-absolute";
+							div_badge.style.top = '0.5rem';
+							div_badge.style.right = '0.5rem';
+							div_badge.textContent = 'Sale';
+							div_card.appendChild(div_badge);
+						}
+
+						var img = document.createElement('img');
+						img.className = "card_img_top";
+						img.setAttribute('src', '../upload/' + obj.image);
+						img.style.width = '450';
+						img.style.height = '300';
+						var div_card_body = document.createElement('div');
+						div_card_body.className = "card-body p-4";
+
+						var div_text_center = document.createElement('div');
+						div_text_center.className = "text-center";
+
+						var h5_fw_bolder = document.createElement('h5');
+						h5_fw_bolder.className = "fw_bolder";
+						h5_fw_bolder.textContent = obj.itemName;
+
+						var div_d_flex = document.createElement('div');
+						div_d_flex.className = "d-flex justify-content-center small text-warning mb-2";
+
+						if ((obj.likeIt - Math.floor(obj.likeIt)) == 0) {
+							for (var j = 0; j < obj.likeIt; j++) {
+								var div_star = document.createElement('div');
+								div_star.className = "bi-star-fill";
+								div_d_flex.appendChild(div_star);
+							}
+						} else {
+							for (var j = 0; j < Math.floor(obj.likeIt); j++) {
+								var div_star = document.createElement('div');
+								div_star.className = "bi-star-fill";
+								div_d_flex.appendChild(div_star);
+							}
+							var div_star = document.createElement('div');
+							div_star.className = "bi-star-half";
+							div_d_flex.appendChild(div_star);
+						}
+
+						var span1 = document.createElement('span');
+						var span2 = document.createElement('span');
+						span1.className = "text-muted text-decoration-line-through"
+						if (obj.salePrice == 0) {
+							span1.className = "";
+							span1.textContent = ' \\' + obj.originPrice;
+						} else {
+							span1.textContent = ' \\' + obj.originPrice;
+							span2.textContent = ' \\' + obj.salePrice;
+						}
+						div_text_center.append(h5_fw_bolder, div_d_flex, span1,
+								span2);
+
+						div_card_body.appendChild(div_text_center);
+
+						var div_card_footer = document.createElement('div');
+						div_card_footer.className = "card-footer p-4 pt-0 border-top-0 bg-transparent";
+						var div_btn = document.createElement('div');
+						var a_btn = document.createElement('a');
+						a_btn.className = "btn btn-outline-dark mt-auto";
+						a_btn.setAttribute('href', '#');
+						a_btn.textContent = "Add to cart";
+						div_btn.className = "text-center";
+						div_btn.appendChild(a_btn);
+						div_card_footer.appendChild(div_btn);
+						div_card.append(img, div_card_body, div_card_footer);
+
+						div.appendChild(div_card);
+
+						return div;
+					}
+
+					var xhtp = new XMLHttpRequest();
+					xhtp.open('get', '../ShopItemServlet');
+					xhtp.send();
+					xhtp.onload = function() {
+						var data = JSON.parse(xhtp.responseText);
+						var row = document.querySelector('section>div>div.row')
+						for (var i = 0; i < data.length; i++) {
+							row.appendChild(makeOneProduct(data[i])); // div 태그 하나를 만들어줌
+						}
+					}
+				</script>
+
+			</div>
+		</div>
+	</section>
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2021</p>
+		</div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+</body>
+</html>

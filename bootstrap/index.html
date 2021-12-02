@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -14,7 +13,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 </head>
-
 <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -107,16 +105,58 @@
 
                         var div_card = document.createElement('div');
                         div_card.className = "card h-100";
+                        
+                        if(obj.salePrice != 0){
+                        	var div_badge = document.createElement('div');
+                        	div_badge.className = "badge bg-dark text-white position-absolute";
+                        	div_badge.style.top = '0.5rem';
+                        	div_badge.style.right = '0.5rem';
+                        	div_badge.textContent = 'Sale';
+                        	div_card.appendChild(div_badge);
+                        }
 
                         var img = document.createElement('img');
                         img.className = "card-img-top";
-                        img.setAttribute('src', '../upload/' + obj.image);
-
+                        img.setAttribute('src', '../upload/' + obj.image );
+                        img.style.width = '450';
+                        img.style.high = '300';
+                        
                         var div_card_body = document.createElement('div');
-                        div_card_body.className = "card-body";
-                    
+                        div_card_body.className = "card-body p-4";
+                        
+                        var div_text_center = doucument.createElement('div');
+                        div_text_center.className = "text-center";
+                        
+                        var h5_fw_bolder = doucument.createElement('h5');
+                        h5_fw_bolder.className = "fw-bolder";
+                        h5_fw_bolder.textContent = obj.itemName;
+                        
+                        var div_d_flex = document.createElement('div');
+                        div_d_flex.className = "d-flex justify-content-center small text-warning mb-2";
+                        
+                       
+                        var span1 =document.createElement('span');
+                        span1.className = "text-muted text-decoration-line-through";
+                        span1.textContent = obj.originPrice;
+                        
+                        var span2 = document.createElement('span');
+                        span2.textContent = obj.salePrice;
+                        
+                        div_text_center.append(span2, span1, div_d_flex, h5_fw_bolder);
+                        div_card_body.append(div_text_center);
+   
                         var div_card_footer = document.createElement('div');
-                        div_car_footer.className = "cart_footer";
+                        div_car_footer.className = "card-footer p-4 pt-0 border-top-0 bg-transparent";
+                        
+                        var div_btn = document.createElement('div');
+                        div_btn.className = "text-center";
+                        
+                        var div_a = document.createElement('a');
+                        div_a.className = "btn btn-outline-dark mt-auto";
+                        div_a.setAttribute('href', '#');
+                        div_a.textContent = 'Add to Cart';
+                        div_btn.appendChild(div_a);
+                        div_card_footer.appendChild(div_btn);
                         
                         
                         div_card.append(img, div_card_body, div_card_footer);
@@ -138,7 +178,6 @@
                         }
                     }
                 </script>
-
             </div>
         </div>
     </section>
