@@ -10,24 +10,21 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>sample</servlet-name>
-		<url-pattern>/sample.do</url-pattern>
+		<url-pattern>/sampleServlet</url-pattern>
 	</servlet-mapping>
 
-
 	<servlet>
-		<servlet-name>FormServlet</servlet-name>
-		<servlet-class>com.edu.FormServlet</servlet-class>
+		<servlet-name>frontControl</servlet-name>
+		<servlet-class>com.edu.controller.FrontController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>FormServlet</servlet-name>
-		<url-pattern>/FormServlet.do</url-pattern>
+		<servlet-name>frontControl</servlet-name>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-
 
 </web-app>
