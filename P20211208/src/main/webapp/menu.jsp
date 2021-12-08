@@ -19,9 +19,9 @@
 </head>
 <body>
 	<ul>
-		<li>Menu1</li>
-		<li>Menu2</li>
-		<li>Menu3</li>
+		<li><a href='<%=request.getContextPath()%>/member/memberInput.jsp'>회원등록</a></li>
+		<li><a href='<%=request.getContextPath()%>/member/memberSearch.jsp'>회원조회</a></li>
+		<li><a href='<%=request.getContextPath()%>/member/memberUpdate.jsp'>회원수정</a></li>
 	</ul>
 
 </body>
