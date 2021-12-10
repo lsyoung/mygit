@@ -3,109 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-  $(document).ready(onreadyFnc);
-  function onreadyFnc() {
-	  
-		$.ajax({
-			url: 'TodoServlet',
-			method: 'get',
-			dataType: 'json',
-			success: loadCommentResult,
-			error: function (error) {
-				console.log(error);
-				window.alert(`error: ${error.status}, Message: ${error.statusText}`);
-			}
-		});
-	}
-  
-  
-	function loadCommentResult(result) {
-		console.log(result);
-		if (result.retCode == 'Success') {
-			var content = result.retVal;
-			content.forEach(item => {
-				$('#todolist').append(makeContentView(item));
-			});
-
-		} else {
-			window.alert(result.retVal);
+<style>
+		.list {
+			width: 80%;
+			height: 500px;
+			background-color: rgba(0, 0, 0, 0.2);
+			margin: auto;
 		}
-	}
-   function addTodoFnc(){
-	   $.ajax({
-			url: 'TodoServlet',
-			method: 'post',
-			data: {
-				cmd: 'insert',
-				content: $('form[name="addtodo"]>input[name="content"]').val()
-			},
-			dataType: 'json',
-			success: addResult,
-			error: function () {
-				window.alert(`error: ${error.status}, Message: ${error.statusText}`);
+
+		h2 {
+			width: 400px;
+			text-align: center;
+			font-size: 50px;
+			margin: 0 20vw;
+			padding: 20px 0;
+			color: rgb(21, 3, 121);
+
+		}
+
+		#addlist {
+			margin: 3vw auto auto 15vw;
+		}
+
+		input[type='text'],
+		input[type='button'] {
+			height: 50px;
+			border-radius: 50px;
+			border-style: none;
+		}
+
+		input[type='text'] {
+			width: 70%;
+		}
+
+		input[type='button'] {
+			width: 50px;
+			background-color: royalblue;
+			cursor: pointer;
+		}
+
+		.newcontent {
+			background-color: rgb(66, 64, 64);
+			color: #fff;
+		}
+
+		.newcontent>input[type='button'] {
+			background: none;
+			cursor: pointer;
+			color: cyan;
+		}
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(onreadyFnc);
+
+		function onreadyFnc() {
+
+			$.ajax({
+				url: 'TodoServlet',
+				method: 'get',
+				dataType: 'json',
+				success: loadCommentResult,
+				error: function (error) {
+					console.log(error);
+					window.alert(`error: ${error.status}, Message: ${error.statusText}`);
+				}
+			});
+		}
+
+
+		function loadCommentResult(result) {
+			console.log(result);
+			if (result.retCode == 'Success') {
+				var content = result.retVal;
+				content.forEach(item => {
+					$('#todolist').append(makeContentView(item));
+				});
+
+			} else {
+				window.alert(result.retVal);
 			}
-		});
-   }
-   function deleteTodo(e) {
-   
-	   if(confirm('삭제하시겠습니까')){
-		   
-           var content = $(e.target.parentNode).attr('content');
-          
-           $.ajax({
-              url:'TodoServlet',
-              method:'post',
-              data:{
-            	 content: content,
-                 cmd:'delete'
-              },
-              dataType:'json',
-              success:function(result){
-                 alert(`content : ${result.retVal}가 삭제되었습니다`);
-                 $(e.target.parentNode).remove();
-              },
-              error:function(error){
-                 console.log(error);
-                 alert('삭제 처리 중 에러가 발생했습니다');
-              }
-           })
-        }else{
-           alert("취소되었습니다");
-        }
-	}
-   function addResult(result) {
-		var obj = result.retVal;
-		$('#todolist').append(makeContentView(obj));
-		
-		$('form[name="addtodo"]>input[type="text"]').val("");
-	}
-   
-   function makeContentView(content) {
-	   console.log(content);
-		var div = $('<div>');
-		$(div).addClass('newcontent');
-		$(div).append( 
-			$('<strong>').text(content.content),
-			$('<input>').attr('type', 'button').val('REMOVE').click(deleteTodo)
-		);
-		return div;
-	}
-  	
-  
- </script>
+		}
+
+		function addTodoFnc() {
+			$.ajax({
+				url: 'TodoServlet',
+				method: 'post',
+				data: {
+					cmd: 'insert',
+					content: $('form[name="addtodo"]>input[name="content"]').val()
+				},
+				dataType: 'json',
+				success: addResult,
+				error: function () {
+					window.alert(`error: ${error.status}, Message: ${error.statusText}`);
+				}
+			});
+		}
+
+		function deleteTodo(e) {
+
+			if (confirm('삭제하시겠습니까')) {
+
+				var content = $(e.target.parentNode).attr('content');
+
+				$.ajax({
+					url: 'TodoServlet',
+					method: 'post',
+					data: {
+						content: content,
+						cmd: 'delete'
+					},
+					dataType: 'json',
+					success: function (result) {
+						alert(`content : ${result.retVal}가 삭제되었습니다`);
+						$(e.target.parentNode).remove();
+					},
+					error: function (error) {
+						console.log(error);
+						alert('삭제 처리 중 에러가 발생했습니다');
+					}
+				})
+			} else {
+				alert("취소되었습니다");
+			}
+		}
+
+		function addResult(result) {
+			var obj = result.retVal;
+			$('#todolist').append(makeContentView(obj));
+
+			$('form[name="addtodo"]>input[type="text"]').val("");
+		}
+
+		function makeContentView(content) {
+			console.log(content);
+			var div = $('<div>');
+
+			$(div).data('content', content.content);
+
+			$(div).addClass('newcontent');
+			$(div).append(
+				$('<strong>').text(content.content),
+				$('<input>').attr('type', 'button').val('REMOVE').click(deleteTodo)
+			);
+			return div;
+		}
+	</script>
 </head>
 <body>
-	<h2>TODO list</h2>
-	<div id=add>
-		<form action="" name="addtodo">
-			<input type='text' name='content'
-				placeholder='What do you want to do...'> <input
-				type='button' value='+' id=save onclick='addTodoFnc()'>
-		</form>
+	<div class="list">
+		<h2>TODO list</h2>
+		<div id=add>
+			<form action="" name="addtodo">
+				<input type='text' name='content' placeholder='What do you want to do...'>
+				<input type='button' value='+' id=save onclick='addTodoFnc()'>
+			</form>
+		</div>
+		<div id=todolist></div>
 	</div>
-	<div id=todolist></div>
 </body>
 </html>
