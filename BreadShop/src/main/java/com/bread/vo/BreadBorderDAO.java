@@ -97,12 +97,15 @@ public class BreadBorderDAO extends DAO {
 
 	// 수정
 	public BreadBorderVO borderUpdate(BreadBorderVO vo) {
-		String sql = "update bread_border " + "set  border_title=?, " + "     border_content=?" + "where border_id=?";
+		String sql = "update bread_border " + "set  border_title=?, " 
+											+ "     border_content=?" 
+											+ "where border_id=?";
 		connect();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBorderTitle());
 			psmt.setString(2, vo.getBorderContent());
+			psmt.setInt(3, vo.getBorderId());
 
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 수정");
@@ -119,7 +122,7 @@ public class BreadBorderDAO extends DAO {
 		BreadBorderVO vo = borderSearch(borderId);
 		String sql = "delete from bread_border where border_id=?";
 		connect();
-
+	
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, borderId);
