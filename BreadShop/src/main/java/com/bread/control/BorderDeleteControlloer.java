@@ -28,8 +28,8 @@ public class BorderDeleteControlloer implements Controller {
 
 		BreadBorderService service = new BreadBorderService();
 		service.delete(borderId);
-		
-		req.getRequestDispatcher("breadShop/borderList.jsp").forward(req, res);
+		//삭제후 리스트로 바로 이동  
+		req.getRequestDispatcher("borderList.do").forward(req, res);
 
 	}
 

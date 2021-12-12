@@ -16,9 +16,11 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		list = new HashMap<String, Controller>();
+		list.put("/borderList.do", new BorderListController());
 		list.put("/borderInsert.do", new BorderInsertControlloer());	
 		list.put("/borderUpdate.do", new BorderUpdateControlloer());
 		list.put("/borderDelete.do", new BorderDeleteControlloer());
+		list.put("/commentInsert.do", new CommentInsertController());
 	}
 
 	@Override

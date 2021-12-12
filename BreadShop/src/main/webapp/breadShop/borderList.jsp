@@ -11,7 +11,8 @@
 </head>
 	<%
 		BreadBorderDAO dao = new BreadBorderDAO();
-		List<BreadBorderVO> list = dao.borderList();
+		//List<BreadBorderVO> list = dao.borderList();
+		List<BreadBorderVO> list = (List<BreadBorderVO>) request.getAttribute("borderList");
 	%>
 <body>
 	<button onclick="location.href='borderInsert.jsp'">글쓰기</button>
@@ -32,6 +33,6 @@
 	<%
 	}
 	%>
-	</table>
+	</table>	
 </body>
 </html>
