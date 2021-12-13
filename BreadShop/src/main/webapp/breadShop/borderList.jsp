@@ -22,18 +22,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-				List<BreadBorderVO> list = (List<BreadBorderVO>) request.getAttribute("borderList");
-				for(BreadBorderVO vo : list) {
-				%>
-				<tr>
-					<td><a href="borderOutput.jsp?borderId=<%=vo.getBorderId()%>"><%=vo.getBorderId()%></a></td>
-					<td><%=vo.getBorderTitle()%></td>
-					<td><%=vo.getBorderWriter()%></td>
-				</tr>
-				<%
-				}
-				%>
+				<c:forEach var="vo" items="${requestScope.borderList }">
+					<tr>
+						<td><a href='borderOutput.jsp?borderId=${vo.borderId }'>${vo.borderId }</a></td>
+						<td>${vo.borderTitle }</td>
+						<td>${vo.borderWriter }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</form>
