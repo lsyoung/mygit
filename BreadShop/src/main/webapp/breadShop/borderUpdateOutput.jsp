@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button onclick="location.href='borderList.jsp'">목록</button>
+				<input type='button' value='목록' onclick="location.href='breadShop/borderList.jsp'">
 			</td>
 		</tr>
 	</table>

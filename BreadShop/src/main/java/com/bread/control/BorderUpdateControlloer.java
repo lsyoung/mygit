@@ -28,7 +28,7 @@ public class BorderUpdateControlloer implements Controller {
 		
 		BreadBorderService service = new BreadBorderService();
 		service.update(vo);
-		
+		req.setAttribute("border", vo);
 		req.setAttribute("newTitle", borderTitle);
 		req.setAttribute("newContent", borderContent);
 		

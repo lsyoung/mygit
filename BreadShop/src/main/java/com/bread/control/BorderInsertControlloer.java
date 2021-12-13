@@ -13,7 +13,6 @@ public class BorderInsertControlloer implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
 	
 		String borderTitle = req.getParameter("borderTitle");
 		String borderContent = req.getParameter("borderContent");
