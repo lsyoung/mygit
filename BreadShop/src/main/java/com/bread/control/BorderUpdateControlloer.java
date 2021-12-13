@@ -20,7 +20,7 @@ public class BorderUpdateControlloer implements Controller {
 		String borderWriter = req.getParameter("borderWriter");
 
 		BreadBorderVO vo = new BreadBorderVO();
-
+		
 		vo.setBorderId(borderId);
 		vo.setBorderTitle(borderTitle);
 		vo.setBorderContent(borderContent);

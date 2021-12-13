@@ -7,7 +7,7 @@
 <title>borderInsert.jsp</title>
 </head>
 <body>
-	<form action='../borderInsert.do' method='get'>
+	<form action='../borderInsert.do' method='post'>
 		<table border='1'>
 			<tr>
 				<th>NAME</th>
@@ -23,7 +23,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					<input type='submit' value='입력' onclick="location.href='borderOutput.jsp'">
+					<input type='submit' value='입력'>
 					<input type='button' value='취소' onclick="location.href='borderList.jsp'">
 				</td>
 			</tr>

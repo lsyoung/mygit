@@ -21,7 +21,7 @@ public class BreadBorderDAO extends DAO {
 				BreadBorderVO vo = new BreadBorderVO();
 				vo.setBorderId(rs.getInt("border_id"));
 				vo.setBorderTitle(rs.getString("border_title"));
-				vo.setBorderContent(rs.getString(" border_content"));
+				vo.setBorderContent(rs.getString("border_content"));
 				vo.setBorderWriter(rs.getString("border_writer"));
 				list.add(vo);
 			}
@@ -74,9 +74,9 @@ public class BreadBorderDAO extends DAO {
 			seq = rs.getInt(1);
 		}
 		seq++;
-
+		System.out.println(vo);
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1, vo.getBorderId());
+		psmt.setInt(1, seq);
 		psmt.setString(2, vo.getBorderTitle());
 		psmt.setString(3, vo.getBorderContent());
 		psmt.setString(4, vo.getBorderWriter());

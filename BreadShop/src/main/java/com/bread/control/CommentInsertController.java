@@ -1,12 +1,14 @@
 package com.bread.control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bread.service.CommentService;
+import com.bread.vo.CommentDAO;
 import com.bread.vo.CommentVO;
 
 public class CommentInsertController implements Controller {
@@ -31,8 +33,12 @@ public class CommentInsertController implements Controller {
 		
 		CommentService service = new CommentService();
 		service.insert(vo);
+		CommentDAO dao = new CommentDAO();
+		List<CommentVO>list = dao.commentList();
 		
 		req.setAttribute("comment", vo);
+		req.setAttribute("commentlist", list);
+		
 		req.getRequestDispatcher("breadShop/borderOutput.jsp").forward(req, res);
 
 	}

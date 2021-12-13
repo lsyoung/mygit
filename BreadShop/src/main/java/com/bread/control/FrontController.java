@@ -20,6 +20,7 @@ public class FrontController extends HttpServlet {
 		list.put("/borderInsert.do", new BorderInsertControlloer());	
 		list.put("/borderUpdate.do", new BorderUpdateControlloer());
 		list.put("/borderDelete.do", new BorderDeleteControlloer());
+		list.put("/borderOne.do", new BorderOneController());
 		list.put("/commentInsert.do", new CommentInsertController());
 	}
 
