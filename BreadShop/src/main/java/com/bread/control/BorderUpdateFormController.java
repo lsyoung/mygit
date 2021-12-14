@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.bread.service.BreadBorderService;
 import com.bread.vo.BreadBorderVO;
 
-public class BorderOneController implements Controller {
+
+public class BorderUpdateFormController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
-		System.out.println(req.getParameter("borderId"));
+		
 		int borderId = Integer.parseInt(req.getParameter("borderId"));
-
+		
 		BreadBorderService service = new BreadBorderService();
-
 		BreadBorderVO vo = service.borderOne(borderId);
 		req.setAttribute("border", vo);
-		
 
-		req.getRequestDispatcher("breadShop/borderOutput.jsp").forward(req, res);
+		req.getRequestDispatcher("breadShop/borderUpdate.jsp").forward(req, res);
+		
 
 	}
 

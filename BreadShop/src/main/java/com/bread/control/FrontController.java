@@ -21,14 +21,19 @@ public class FrontController extends HttpServlet {
 		list.put("/borderUpdate.do", new BorderUpdateControlloer());
 		list.put("/borderDelete.do", new BorderDeleteControlloer());
 		list.put("/borderOne.do", new BorderOneController());
+		list.put("/borderUpdateForm.do", new BorderUpdateFormController());
 		list.put("/commentInsert.do", new CommentInsertController());
+		list.put("/commentList.do", new CommentListController());
+		
 	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String url = req.getRequestURI();
+		System.out.println(url);
 		String context = req.getContextPath();
 		String path = url.substring(context.length());
+		System.out.println(path);
 
 		Controller subCont = list.get(path);
 		subCont.execute(req, res);

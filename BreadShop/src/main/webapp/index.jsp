@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href='breadShop/borderList.jsp'>게시판</a>
+	<a href='borderList.do'>게시판</a>
 </body>
 </html>

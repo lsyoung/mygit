@@ -47,7 +47,7 @@ public class BreadBorderDAO extends DAO {
 				BreadBorderVO vo = new BreadBorderVO();
 				vo.setBorderId(rs.getInt("border_id"));
 				vo.setBorderTitle(rs.getString("border_title"));
-				vo.setBorderContent(rs.getString(" border_content"));
+				vo.setBorderContent(rs.getString("border_content"));
 				vo.setBorderWriter(rs.getString("border_writer"));
 				return vo;
 			}

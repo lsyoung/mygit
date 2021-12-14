@@ -11,7 +11,7 @@
 	<%
 	BreadBorderVO vo = (BreadBorderVO) request.getAttribute("border");
 	%>
-	<form action='../borderUpdate.do' method='post'>
+	<form action='borderUpdate.do' method='get'>
 		<input type='hidden' name='borderId' value='<%=vo.getBorderId()%>'>
 		<table border='1'>
 			<tr>
@@ -27,12 +27,11 @@
 				<td><textarea rows='10' cols='60' name='borderContent'><%=vo.getBorderContent()%></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<input type='submit' value='수정'>
-					<input type='button' value='목록' onclick="location.href='breadShop/borderList.jsp'">
-				</td>
+				<td colspan="2"><input type='submit' value='수정'> 
+				<input type='button' value='목록' onclick="location.href='borderList.do'"></td>
 			</tr>
 		</table>
 	</form>
+
 </body>
 </html>

@@ -24,7 +24,7 @@
 			<tr>
 				<td colspan="2" align="right">
 					<input type='submit' value='입력'>
-					<input type='button' value='취소' onclick="location.href='borderList.jsp'">
+					<input type='button' value='취소' onclick="location.href='../borderList.do'">
 				</td>
 			</tr>
 		</table>

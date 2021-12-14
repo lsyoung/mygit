@@ -50,13 +50,13 @@ public class CommentDAO extends DAO {
 			seq = rs.getInt(1);
 		}
 		seq++;
-
+		System.out.println(vo);
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1, vo.getCommentNo());
-		psmt.setInt(2, vo.getBorderNo());
-		psmt.setString(3, vo.getCommentWriter());
-		psmt.setString(4, vo.getCommentContent());
-		psmt.setString(5, vo.getCommentPasswd());
+		psmt.setInt(1, seq);
+		psmt.setInt(2, vo.getCommentNo());
+		psmt.setInt(3, vo.getBorderNo());
+		psmt.setString(4, vo.getCommentWriter());
+		psmt.setString(5, vo.getCommentContent());
 		psmt.setString(6, vo.getCommentDay());
 
 		int r = psmt.executeUpdate();

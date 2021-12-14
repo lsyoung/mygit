@@ -17,9 +17,9 @@ public class DAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String url = "jdbc:oracle:thin:@lsyoung1004_high?TNS_ADMIN=/Users/young/mycloud/Wallet_lsyoung1004";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String id = "hr";
-			String password = "Testdb4212460";
+			String password = "hr";
 
 			conn = DriverManager.getConnection(url, id, password);
 			System.out.println("연결성공");
