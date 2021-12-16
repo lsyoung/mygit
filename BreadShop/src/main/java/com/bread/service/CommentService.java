@@ -12,7 +12,9 @@ public class CommentService {
 	public List<CommentVO> commentAll(int borderId){
 		return dao.commentList(borderId);
 	}
-	
+	public CommentVO commentOne(int commentNo) {
+		return dao.commentOne(commentNo);
+	}
 	//등록  
 	public CommentVO insert(CommentVO vo) {
 		try {

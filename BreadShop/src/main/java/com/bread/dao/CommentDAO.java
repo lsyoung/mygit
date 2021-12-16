@@ -35,6 +35,32 @@ public class CommentDAO extends DAO {
 		}
 		return list;
 	}
+	//한건조회
+	public CommentVO commentOne(int commentNo) {
+		String sql = "select * from border_comment where comment_no=?";
+		connect();
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, commentNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				CommentVO vo = new CommentVO();
+				vo.setCommentNo(rs.getInt("comment_no"));
+				vo.setBorderNo(rs.getInt("comment_board_no"));
+				vo.setCommentWriter(rs.getString("comment_writer"));
+				vo.setCommentContent(rs.getString("comment_content"));
+				vo.setCommentPasswd(rs.getString("comment_pwd"));
+				vo.setCommentDay(rs.getString("comment_day"));
+				return vo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
 
 	// 등록
 	public CommentVO commentInsert(CommentVO vo) throws Exception {
