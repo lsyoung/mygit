@@ -1,10 +1,10 @@
-package com.bread.vo;
+package com.bread.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bread.dao.DAO;
+import com.bread.vo.BreadBorderVO;
 
 public class BreadBorderDAO extends DAO {
 

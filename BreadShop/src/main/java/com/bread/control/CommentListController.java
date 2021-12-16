@@ -16,7 +16,7 @@ public class CommentListController implements Controller {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		CommentService service = new CommentService();
-		List<CommentVO> list = service.commentAll();
+		List<CommentVO> list = service.commentAll(1);
 		
 		req.setAttribute("commentList", list);
 		req.getRequestDispatcher("breadShop/borderOutput.jsp").forward(req, res);

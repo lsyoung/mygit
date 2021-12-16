@@ -1,22 +1,23 @@
-package com.bread.vo;
+package com.bread.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bread.dao.DAO;
+import com.bread.vo.CommentVO;
 
 public class CommentDAO extends DAO {
 
 	// 전체리스트
-	public List<CommentVO> commentList() {
+	public List<CommentVO> commentList(int borderId) {
 		List<CommentVO> list = new ArrayList();
-		String sql = "select * from border_comment";
+		String sql = "select * from border_comment where comment_board_no=?";
 		connect();
 
 		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, borderId);
+			rs = psmt.executeQuery();
 			while (rs.next()) {
 				CommentVO vo = new CommentVO();
 				vo.setCommentNo(rs.getInt("comment_no"));
@@ -38,7 +39,7 @@ public class CommentDAO extends DAO {
 	// 등록
 	public CommentVO commentInsert(CommentVO vo) throws Exception {
 		String getqul = "select value from repository where name='border_comment'";
-		String sql = "insert into border_comment values(?,?,?,?,?,?)";
+		String sql = "insert into border_comment values(?,?,?,?,?, sysdate)";
 		String changesql = "update repository set value=? where name='border_comment'";
 
 		int seq = -1;
@@ -53,11 +54,11 @@ public class CommentDAO extends DAO {
 		System.out.println(vo);
 		psmt = conn.prepareStatement(sql);
 		psmt.setInt(1, seq);
-		psmt.setInt(2, vo.getCommentNo());
-		psmt.setInt(3, vo.getBorderNo());
-		psmt.setString(4, vo.getCommentWriter());
-		psmt.setString(5, vo.getCommentContent());
-		psmt.setString(6, vo.getCommentDay());
+		psmt.setInt(2, vo.getBorderNo());
+		psmt.setString(3, vo.getCommentWriter());
+		psmt.setString(4, vo.getCommentContent());
+		psmt.setString(5, vo.getCommentPasswd());
+		//psmt.setString(6, vo.getCommentDay());
 
 		int r = psmt.executeUpdate();
 		System.out.println(r + "건 등록");

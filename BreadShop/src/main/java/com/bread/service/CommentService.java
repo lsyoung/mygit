@@ -2,15 +2,15 @@ package com.bread.service;
 
 import java.util.List;
 
-import com.bread.vo.CommentDAO;
+import com.bread.dao.CommentDAO;
 import com.bread.vo.CommentVO;
 
 public class CommentService {
 	
 	CommentDAO dao = new CommentDAO();
 	
-	public List<CommentVO> commentAll(){
-		return dao.commentList();
+	public List<CommentVO> commentAll(int borderId){
+		return dao.commentList(borderId);
 	}
 	
 	//등록  

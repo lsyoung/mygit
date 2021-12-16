@@ -1,6 +1,7 @@
+<%@page import="com.bread.dao.BreadBorderDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bread.vo.BreadBorderVO"%>
-<%@page import="com.bread.vo.BreadBorderDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>

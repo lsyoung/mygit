@@ -7,8 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bread.service.BreadBorderService;
 import com.bread.service.CommentService;
-import com.bread.vo.CommentDAO;
+import com.bread.vo.BreadBorderVO;
 import com.bread.vo.CommentVO;
 
 public class CommentInsertController implements Controller {
@@ -19,15 +20,26 @@ public class CommentInsertController implements Controller {
 	
 		int borderNo = Integer.parseInt(req.getParameter("borderNo"));
 		String commentContent = req.getParameter("commentContent");
+		String commentWriter = req.getParameter("commentWriter");
+		String CommentPasswd = req.getParameter("commentPasswd");
 	
 		CommentVO vo = new CommentVO();
 
 		vo.setBorderNo(borderNo);
 		vo.setCommentContent(commentContent);
-	
-		CommentService service = new CommentService();
-		service.insert(vo);
-		req.setAttribute("comment", vo);
+		vo.setCommentWriter(commentWriter);
+		vo.setCommentPasswd(CommentPasswd);
+
+		CommentService service1 = new CommentService();
+		service1.insert(vo);
+		
+		List<CommentVO> list = service1.commentAll(borderNo);
+		req.setAttribute("commentList", list);
+		
+		BreadBorderService service = new BreadBorderService();
+		BreadBorderVO vo1 = service.borderOne(borderNo);
+		req.setAttribute("border", vo1);
+		
 		
 		req.getRequestDispatcher("breadShop/borderOutput.jsp").forward(req, res);
 

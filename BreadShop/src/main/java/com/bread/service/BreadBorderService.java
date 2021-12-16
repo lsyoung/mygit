@@ -2,7 +2,7 @@ package com.bread.service;
 
 import java.util.List;
 
-import com.bread.vo.BreadBorderDAO;
+import com.bread.dao.BreadBorderDAO;
 import com.bread.vo.BreadBorderVO;
 
 public class BreadBorderService {

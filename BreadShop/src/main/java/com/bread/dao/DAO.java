@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DAO {
+	// 다른 패키지에서 작업할거기 때문에 public 선언
 	public Connection conn;
 	public Statement stmt;
 	public PreparedStatement psmt;
@@ -15,6 +16,10 @@ public class DAO {
 
 	public void connect() {
 		try {
+			
+			
+			
+//			예전에 하던거
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -22,8 +27,15 @@ public class DAO {
 			String password = "hr";
 
 			conn = DriverManager.getConnection(url, id, password);
+			/*
+			 * InitialContext ic = new InitialContext();
+			 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle"); 
+			 * conn= ds.getConnection();
+			 */
+			
+
 			System.out.println("연결성공");
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -59,6 +71,5 @@ public class DAO {
 				e.printStackTrace();
 			}
 		}
-
 	}
 }
