@@ -21,14 +21,17 @@ public class CommentInsertController implements Controller {
 		int borderNo = Integer.parseInt(req.getParameter("borderNo"));
 		String commentContent = req.getParameter("commentContent");
 		String commentWriter = req.getParameter("commentWriter");
-		String CommentPasswd = req.getParameter("commentPasswd");
-	
+		String commentPasswd = req.getParameter("commentPasswd");
+		//String commentDay = req.getParameter("commentDay");)
+		
+		
 		CommentVO vo = new CommentVO();
 
 		vo.setBorderNo(borderNo);
 		vo.setCommentContent(commentContent);
 		vo.setCommentWriter(commentWriter);
-		vo.setCommentPasswd(CommentPasswd);
+		vo.setCommentPasswd(commentPasswd);
+		//vo.setCommentDay(commentDay);
 
 		CommentService service1 = new CommentService();
 		service1.insert(vo);

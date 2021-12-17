@@ -65,7 +65,7 @@ public class CommentDAO extends DAO {
 	// 등록
 	public CommentVO commentInsert(CommentVO vo) throws Exception {
 		String getqul = "select value from repository where name='border_comment'";
-		String sql = "insert into border_comment values(?,?,?,?,?, sysdate)";
+		String sql = "insert into border_comment values(?,?,?,?,?,sysdate)";
 		String changesql = "update repository set value=? where name='border_comment'";
 
 		int seq = -1;
