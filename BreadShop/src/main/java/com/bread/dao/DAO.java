@@ -22,9 +22,9 @@ public class DAO {
 //			예전에 하던거
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String url = "jdbc:oracle:thin:@lsyoung1004_high?TNS_ADMIN=/Users/young/mycloud/Wallet_lsyoung1004";
 			String id = "hr";
-			String password = "hr";
+			String password = "Testdb4212460";
 
 			conn = DriverManager.getConnection(url, id, password);
 			/*

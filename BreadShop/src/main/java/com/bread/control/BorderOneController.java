@@ -28,6 +28,7 @@ public class BorderOneController implements Controller {
 		CommentService service1 = new CommentService();
 		List<CommentVO> list = service1.commentAll(borderId);
 		req.setAttribute("commentList", list);
+		
 
 		req.getRequestDispatcher("breadShop/borderOutput.jsp").forward(req, res);
 

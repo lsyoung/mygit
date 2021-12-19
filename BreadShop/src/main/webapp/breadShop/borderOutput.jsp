@@ -63,17 +63,29 @@
 	<script type="text/javascript">
 		//삭제
 		function deleteComment(commentNo) {
-
-			let xhtp = new XMLHttpRequest();
-			xhtp.open('get', 'commentDelete.do?commentNo=' + commentNo);
-			xhtp.send();
-			xhtp.onload = function () {
-			let data = JSON.parse(xhtp.responseText)
-			console.log(data);
-			location.reload();
-			}
+			 var msg = confirm("댓글을 삭제합니다.");    
+	            if(msg == true){ 
+	                deleteCmt(commentNo);
+	            } else {
+	                return false; 
+	            }
 		}
+		
+		function deleteCmt(commentNo) {
+			
+			console.log(event.target.parentNode.parentNode);
+			
+            var param="commentNo"+commentNo;
+            
+            var xhtp = new XMLHttpRequest();
+            xhtp.open('get', 'commentDelete.do?commentNo='+commentNo);  
+            xhtp.send(param);
+            event.target.parentNode.parentNode.remove();
+      
+        }
+		
 
+		//수정  
 		function updateComment(commentNo) {
 			console.log(event.target.value)
 			let targetTr = document.getElementById(commentNo);
@@ -83,19 +95,33 @@
 				let targetTd = targetTr.children[1];
 				let tvalue = targetTd.textContent;
 				targetTd.innerHTML = '<input type="text" value="' + tvalue + '">';
-				targetTr.children[3].children[0].value = '저장';
-
-			} else if (event.target.value == '저장') {
-
 				let xhtp = new XMLHttpRequest();
 				xhtp.open('get', 'commentUpdateForm.do?commentNo=' + commentNo);
 				xhtp.send();
 				xhtp.onload = function () {
 					let data = JSON.parse(xhtp.responseText)
 					console.log(data);
+					
+					targetTr.children[3].children[0].value = '저장';
+					
+				}
 
+			} else if (event.target.value == '저장') {
+				
+				let Td = targetTr.children[1];
+				let content = Td.textContent;
+				Td.innerHTML = '<input type="text" value="' + content + '">';
+				
+				
+				let xhtp = new XMLHttpRequest();
+				xhtp.open('get', 'commentUpdate.do?commentNo=' + commentNo);
+				xhtp.send();
+				xhtp.onload = function () {
+					let update = JSON.parse(xhtp.responseText)
+					console.log(update);
+					
 					targetTr.children[3].children[0].value = '수정';
-
+					
 				}
 			}
 		}

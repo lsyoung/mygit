@@ -39,6 +39,7 @@ public class FrontController extends HttpServlet {
 		list.put("/commentList.do", new CommentListController());
 		list.put("/commentDelete.do", new CommentDeleteController());
 		list.put("/commentUpdateForm.do", new CommentUpdateFormController());
+		list.put("/commentUpdate.do", new commentUpdateController());
 		
 		list.put("/memberinsert.do", new MemberInsertController());
 		list.put("/memberDelete.do", new MemberDeleteController());
