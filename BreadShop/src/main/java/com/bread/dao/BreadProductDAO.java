@@ -53,12 +53,14 @@ public class BreadProductDAO extends DAO {
 		try {
 
 			if (searchText != null && !searchText.equals("")) {// 이거 빼면 안 나온다ㅜ 왜지?
-				sql += " LIKE '%" + searchText.toUpperCase().trim() + "%' order by 1";
+				if (searchField.equals("product_id"))
+					sql += " LIKE '%" + searchText.toUpperCase().trim() + "%' order by 1";
+				else if (searchField.equals("product_name"))
+					sql += " LIKE '%" + searchText.trim() + "%' order by 1";
+
 			}
 
 			psmt = conn.prepareStatement(sql);
-
-			String searchName = "%" + searchText + "%";
 
 			rs = psmt.executeQuery();
 
@@ -123,7 +125,7 @@ public class BreadProductDAO extends DAO {
 		// int productId, String productName, String productDesc int productPrice
 
 		String sql = "UPDATE bread_product "//
-				+ "SET product_id=?, product_name=?, product_desc=?, product_price=?, product_image=?, product_inventory=? "//
+				+ "SET product_id=?, product_name=?, product_desc=?, product_price=?, product_image=?, product_inventory=?, product_grade=? "//
 				+ "WHERE product_name LIKE ?";
 
 		connect();
@@ -136,8 +138,9 @@ public class BreadProductDAO extends DAO {
 			psmt.setInt(4, vo.getProductPrice());
 			psmt.setString(5, vo.getProductImage());
 			psmt.setInt(6, vo.getProductInventory());
+			psmt.setDouble(7, vo.getProductGrade());
 
-			psmt.setString(7, searchName);
+			psmt.setString(8, searchName);
 
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 변경");

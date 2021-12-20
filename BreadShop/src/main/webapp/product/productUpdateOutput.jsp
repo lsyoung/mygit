@@ -37,7 +37,10 @@
 			<th>상품개수</th>
 			<td>${product.productInventory}</td>
 		</tr>
-
+		<tr>
+			<th>상품평점</th>
+			<td>${product.productGrade}</td>
+		</tr>
 
 
 	</table>

@@ -31,6 +31,7 @@ public class ProductInsertController implements Controller {
 		String productCount = mRequest.getParameter("product_count");
 		String productGrade = mRequest.getParameter("product_grade");
 		String productInventory = mRequest.getParameter("product_inventory");
+		
 
 		BreadProductVO vo = new BreadProductVO();
 		vo.setProductDesc(productDesc);

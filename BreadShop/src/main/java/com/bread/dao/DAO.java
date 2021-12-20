@@ -16,23 +16,19 @@ public class DAO {
 
 	public void connect() {
 		try {
-			
-			
-			
+
 //			예전에 하던거
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String url = "jdbc:oracle:thin:@lsyoung1004_high?TNS_ADMIN=/Users/young/mycloud/Wallet_lsyoung1004";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String id = "hr";
-			String password = "Testdb4212460";
+			String password = "hr";
 
 			conn = DriverManager.getConnection(url, id, password);
 			/*
-			 * InitialContext ic = new InitialContext();
-			 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle"); 
-			 * conn= ds.getConnection();
+			 * InitialContext ic = new InitialContext(); DataSource ds = (DataSource)
+			 * ic.lookup("java:comp/env/jdbc/myoracle"); conn= ds.getConnection();
 			 */
-			
 
 			System.out.println("연결성공");
 		} catch (Exception e) {

@@ -18,8 +18,8 @@
 		상품 이미지 :  <input type='file' name ='product_image'></br>
 		상품 가격 :  <input type='number' name='product_price'></br>
 		상품 개수 : <input type ='number' name='product_inventory'></br>
+		상품 평점 : <input type ='text' name='product_grade'></br>
 		<input type ='hidden' name='product_count' value='0'></br>
-		<input type ='hidden' name='product_grade' value='0'></br>
 		<input type ='submit' value='등록'>
 		
 	

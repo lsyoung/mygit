@@ -23,6 +23,7 @@ BreadProductVO vo = (BreadProductVO)request.getAttribute("product");
 		상품 가격 : <input type='number' name='product_price' value='<%=vo.getProductPrice() %>'><br>
 		상품 이미지 : <input type='text' name='product_image' value='<%=vo.getProductImage() %>'><br>
 		상품 개수 : <input type='number' name='product_inventory' value='<%=vo.getProductInventory()%>'><br>
+		상품 평점 : <input type='number' name ='product_grade' value='<%=vo.getProductGrade()%>'><br>
 		<input type='submit' value='수정'>
 		
 	</form>

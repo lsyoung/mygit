@@ -80,6 +80,16 @@ public class BreadCartDAO extends DAO {
 			System.out.println("cart 시퀀스 수정됨");
 
 			// bread_product의 inventory 수정하기
+//			inventory = productVo.getProductInventory();
+//
+//			inventory -= cartCount;
+//			System.out.println("cartCount : " + cartCount);
+//
+//			psmt = conn.prepareStatement(updateInventory);
+//			psmt.setInt(1, inventory);
+//			psmt.setString(2, productVo.getProductId());
+//			rs = psmt.executeQuery();
+//			System.out.println("productId 확인하기" + productVo.getProductId());
 			inventory = productVo.getProductInventory();
 
 			inventory -= cartCount;

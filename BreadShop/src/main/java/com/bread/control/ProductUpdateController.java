@@ -35,7 +35,7 @@ public class ProductUpdateController implements Controller {
 		vo.setProductInventory(Integer.parseInt(productInventory));
 
 		// vo.setProductCount(Integer.parseInt(productCount));
-		// vo.setProductGrade(Double.parseDouble(productGrade));
+		vo.setProductGrade(Double.parseDouble(productGrade));
 
 		ProductService service = new ProductService();
 		service.update(vo);

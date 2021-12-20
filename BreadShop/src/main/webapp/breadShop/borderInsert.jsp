@@ -11,7 +11,7 @@
 		<table border='1'>
 			<tr>
 				<th>NAME</th>
-				<td><input type='text' name='borderWriter'></td>
+				<td><input type='text' name='borderWriter' value='${sessionScope.id }' readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>TITLE</th>

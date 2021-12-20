@@ -104,19 +104,19 @@ public class CommentDAO extends DAO {
 	public CommentVO commentUpdate(CommentVO vo) {
 		String sql = "update border_comment "
 				+ "set   comment_content=?, "
-				+ "      comment_day=?"
-				+ "where comment_no=?";
+				+ "      comment_day=sysdate "
+				+ " where comment_no=?";
 		
 		connect();
 		
 		try {
 			psmt =conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCommentContent());
-			psmt.setString(2, vo.getCommentDay());
-			psmt.setInt(3, vo.getCommentNo());
+			psmt.setInt(2, vo.getCommentNo());
 			
 			int r= psmt.executeUpdate();
 			System.out.println(r +"건 수정 ");
+			System.out.println(vo.getCommentContent());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
