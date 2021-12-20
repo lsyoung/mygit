@@ -19,11 +19,19 @@
 		margin: auto;
 
 	}
+
+	#detailBoard {
+		margin-bottom: 10px;
+	}
+
+	.comment {
+		align: center;
+	}
 </style>
 
 <body>
 	<div class='border'>
-		<table border='1'>
+		<table id="detailBoard" width="800" border="3" bordercolor="lightgray">
 			<tr>
 				<th>NAME</th>
 				<td>${sessionScope.id }</td>
@@ -34,7 +42,7 @@
 			</tr>
 			<tr>
 				<th>CONTENT</th>
-				<td><textarea rows='10' cols='60' readonly="readonly">${border.borderContent }</textarea></td>
+				<td><textarea rows='12' cols='88' readonly="readonly">${border.borderContent }</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -46,27 +54,29 @@
 				</td>
 			</tr>
 		</table>
+<div id="comment">
 		<form action='commentInsert.do' method='post'>
-			<h3>댓글</h3>
 			<input type='hidden' name='borderNo' value='${border.borderId }'>
 			<input type='hidden' name='commentWriter' value='${sessionScope.id }'>
 			<textarea cols='50' rows='1' name='commentContent'></textarea>
 			<input type='password' name='commentPasswd'>
 			<input type="submit" value="댓글등록">
 		</form>
-		<table border='1'>
-			<c:forEach var="item" items="${requestScope.commentList }">
-				<tr id=${item.commentNo}>
-					<td>${item.commentWriter }</td>
-					<td>${item.commentContent }</td>
-					<td>${item.commentDay }</td>
-					<c:if test="${item.commentWriter == sessionScope.id}">
-						<td><input type='button' value='수정' onclick="updateComment(${item.commentNo})"></td>
-						<td><input type='button' value='삭제' onclick="deleteComment(${item.commentNo})"></td>
-					</c:if>
-				</tr>
-			</c:forEach>
-		</table>
+		
+			<table>
+				<c:forEach var="item" items="${requestScope.commentList }">
+					<tr id=${item.commentNo} bgcolor="#F5F5F5">
+						<td>${item.commentWriter }</td>
+						<td>${item.commentContent }</td>
+						<td>${item.commentDay }</td>
+						<c:if test="${item.commentWriter == sessionScope.id}">
+							<td><input type='button' value='수정' onclick="updateComment(${item.commentNo})"></td>
+							<td><input type='button' value='삭제' onclick="deleteComment(${item.commentNo})"></td>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
 	<script type="text/javascript">
 		//삭제

@@ -28,10 +28,8 @@
 <body>
 	<div class='border'>
 		<a href='index.jsp' id='home'>홈으로가기</a>
-		<table cellspacing='0' cellpadding='5' border='1' align='center'>
-			<col width='50px'>
-			<col width='300px'>
-			<col width='100px'>
+		<table id="bList" width="800" border="3" bordercolor="lightgray">
+			
 			<c:choose>
 				<c:when test="${sessionScope.id == null }">
 					<c:redirect url="login.jsp"></c:redirect>
