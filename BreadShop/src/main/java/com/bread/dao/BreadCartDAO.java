@@ -12,6 +12,38 @@ public class BreadCartDAO extends DAO {
 	// String cartId; String memberId; String productId; int cartPrice;
 	// int cartCount; String productName; String productImage;
 
+	// 수정
+
+	public BreadCartVO cartUpdate(BreadCartVO vo, int cartCount) {
+
+		String sql = "UPDATE bread_cart "//
+				+ "SET cart_count=? "//
+				+ ", cart_price=? "//
+				+ "WHERE member_id=? AND product_id=?";//
+
+		connect();
+		System.out.println(cartCount);
+		int count = vo.getCartCount() + cartCount;
+		int sum = count*vo.getCartPrice();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, count);
+			psmt.setInt(2, sum);
+			psmt.setString(3, vo.getMemberId());
+			psmt.setString(4, vo.getProductId());
+
+			int r = psmt.executeUpdate();
+			if (r > 0) {
+				System.out.println(r + "건 변경");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
 	// 입력
 	public BreadCartVO cartInsert(String memberId, String productId, int cartCount) {
 
@@ -80,16 +112,6 @@ public class BreadCartDAO extends DAO {
 			System.out.println("cart 시퀀스 수정됨");
 
 			// bread_product의 inventory 수정하기
-//			inventory = productVo.getProductInventory();
-//
-//			inventory -= cartCount;
-//			System.out.println("cartCount : " + cartCount);
-//
-//			psmt = conn.prepareStatement(updateInventory);
-//			psmt.setInt(1, inventory);
-//			psmt.setString(2, productVo.getProductId());
-//			rs = psmt.executeQuery();
-//			System.out.println("productId 확인하기" + productVo.getProductId());
 			inventory = productVo.getProductInventory();
 
 			inventory -= cartCount;
@@ -100,6 +122,7 @@ public class BreadCartDAO extends DAO {
 			psmt.setString(2, productVo.getProductId());
 			rs = psmt.executeQuery();
 			System.out.println("productId 확인하기" + productVo.getProductId());
+			inventory = productVo.getProductInventory();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,7 +132,40 @@ public class BreadCartDAO extends DAO {
 		return null;
 	}
 
-	// 조회(어차피 전체출력할 일 없기 때문에 조회 리스트로 출력해야함)
+	// 단건조회
+	public BreadCartVO cartSearchOne(String memberId, String productId) {
+		List<BreadCartVO> list = new ArrayList<BreadCartVO>();
+		String sql = "SELECT * FROM bread_cart WHERE member_id=? AND product_id=?";
+		connect();
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, memberId);
+			psmt.setString(2, productId);
+
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				BreadCartVO cartVo = new BreadCartVO();
+				cartVo.setCartCount(rs.getInt("cart_count"));
+				cartVo.setCartId(rs.getString("cart_id"));
+				cartVo.setCartPrice(rs.getInt("cart_price"));
+				cartVo.setMemberId(rs.getString("member_id"));
+				cartVo.setProductId(rs.getString("product_id"));
+				cartVo.setProductImage(rs.getString("product_image"));
+				cartVo.setProductName(rs.getString("product_name"));
+
+				return cartVo;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+
+	// 전체조회
 	public List<BreadCartVO> cartSearchList(String memberId) {
 
 		List<BreadCartVO> list = new ArrayList<BreadCartVO>();

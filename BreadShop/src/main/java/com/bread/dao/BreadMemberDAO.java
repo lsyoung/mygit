@@ -107,7 +107,7 @@ public class BreadMemberDAO extends DAO{
 	//삭제
 	public BreadMemberVO memberDelete(String id) {
 		BreadMemberVO vo = memberSearch(id);
-		String sql = "delete from bread_member where id=?";
+		String sql = "delete from bread_member where id=? ";
 		connect();
 		
 		try {

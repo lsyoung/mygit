@@ -10,6 +10,8 @@
 </head>
 <body>
 	
+	<jsp:include page="head.jsp"></jsp:include>
+	
 	<!-- product -->
 	<c:choose>
 		<c:when test="${sessionScope.id eq 'admin' }">

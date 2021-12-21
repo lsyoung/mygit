@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bread.service.BreadMemberService;
 import com.bread.vo.BreadMemberVO;
@@ -27,6 +28,9 @@ public class MemberDeleteController implements Controller {
 		
 		BreadMemberService service = new BreadMemberService();
 		service.delete(id);
+		
+		HttpSession session = req.getSession();
+		session.invalidate();
 		
 		req.getRequestDispatcher("breadShop/memberDelete.jsp").forward(req, res);
 

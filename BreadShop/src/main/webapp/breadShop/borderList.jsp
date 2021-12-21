@@ -12,15 +12,25 @@
 	<meta charset="UTF-8">
 	<title>borderList.jsp</title>
 	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
 		#home {
 			position: relative;
-			left: 80%;
+			left: 85%;
+			text-decoration: none;
+			color: black;
 		}
 
 		.border {
 			width: 800px;
 			margin: auto;
+			margin-top: 50px;
+		}
 
+		#bList {
+			margin-top: 20px;
 		}
 	</style>
 </head>
@@ -29,7 +39,6 @@
 	<div class='border'>
 		<a href='index.jsp' id='home'>홈으로가기</a>
 		<table id="bList" width="800" border="3" bordercolor="lightgray">
-			
 			<c:choose>
 				<c:when test="${sessionScope.id == null }">
 					<c:redirect url="login.jsp"></c:redirect>

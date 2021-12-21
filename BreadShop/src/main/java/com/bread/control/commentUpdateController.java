@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bread.dao.CommentDAO;
-import com.bread.service.BreadBorderService;
 import com.bread.service.CommentService;
 import com.bread.vo.CommentVO;
 import com.google.gson.Gson;

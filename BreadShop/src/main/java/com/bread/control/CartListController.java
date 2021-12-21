@@ -1,6 +1,7 @@
 package com.bread.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,10 +18,17 @@ public class CartListController implements Controller {
 		String memberId = req.getParameter("memberId");
 		CartService service = new CartService();
 		List<BreadCartVO> list = service.searchList(memberId);
-		
-		req.setAttribute("cartList", list);
-		req.getRequestDispatcher("cart/cartList.jsp").forward(req, res);
 
+		if (memberId.equals("")) {// 로그인 하지 않은 경우
+			PrintWriter out = res.getWriter();
+			out.println("<script>alert('로그인 후 사용해 주세요'); history.back(); </script>");
+
+		} else {
+
+			req.setAttribute("cartList", list);
+			req.getRequestDispatcher("cart/cartList.jsp").forward(req, res);
+
+		}
 	}
 
 }

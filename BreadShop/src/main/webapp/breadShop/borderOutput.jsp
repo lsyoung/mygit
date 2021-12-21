@@ -14,18 +14,44 @@
 	<title>borderOutput.jsp</title>
 </head>
 <style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
 	.border {
 		width: 800px;
 		margin: auto;
-
+		margin-top: 50px;
 	}
 
 	#detailBoard {
 		margin-bottom: 10px;
 	}
 
-	.comment {
-		align: center;
+	.comment_body {
+		text-align: center;
+		background-color: #F5F5F5;
+	}
+
+	.comment_table {
+		margin-top: 10px;
+	}
+
+	form>textarea {
+		width: 795px;
+		height: 36px;
+	}
+
+	input[type=password],
+	input[type=submit] {
+		position: relative;
+		left: 550px;
+	}
+
+	tr>td>textarea {
+		width: 700px;
+		height: 280px;
 	}
 </style>
 
@@ -54,27 +80,28 @@
 				</td>
 			</tr>
 		</table>
-<div id="comment">
-		<form action='commentInsert.do' method='post'>
-			<input type='hidden' name='borderNo' value='${border.borderId }'>
-			<input type='hidden' name='commentWriter' value='${sessionScope.id }'>
-			<textarea cols='50' rows='1' name='commentContent'></textarea>
-			<input type='password' name='commentPasswd'>
-			<input type="submit" value="댓글등록">
-		</form>
-		
-			<table>
-				<c:forEach var="item" items="${requestScope.commentList }">
-					<tr id=${item.commentNo} bgcolor="#F5F5F5">
-						<td>${item.commentWriter }</td>
-						<td>${item.commentContent }</td>
-						<td>${item.commentDay }</td>
-						<c:if test="${item.commentWriter == sessionScope.id}">
-							<td><input type='button' value='수정' onclick="updateComment(${item.commentNo})"></td>
-							<td><input type='button' value='삭제' onclick="deleteComment(${item.commentNo})"></td>
-						</c:if>
-					</tr>
-				</c:forEach>
+		<div id="comment">
+			<form action='commentInsert.do' method='post'>
+				<input type='hidden' name='borderNo' value='${border.borderId }'>
+				<input type='hidden' name='commentWriter' value='${sessionScope.id }'>
+				<textarea cols='80' rows='2' name='commentContent' placeholder="댓글을 입력하세요"></textarea>
+				<input type='password' name='commentPasswd' placeholder="비밀번호">
+				<input type="submit" value="댓글등록">
+			</form>
+			<table class="comment_table">
+				<tbody class="comment_body">
+					<c:forEach var="item" items="${requestScope.commentList }">
+						<tr id=${item.commentNo} bgcolor="#F5F5F5">
+							<td width='100'>${item.commentWriter }</td>
+							<td width='350'>${item.commentContent }</td>
+							<td width='250'>${item.commentDay }</td>
+							<c:if test="${item.commentWriter == sessionScope.id}">
+								<td><input type='button' value='수정' onclick="updateComment(${item.commentNo})"></td>
+								<td><input type='button' value='삭제' onclick="deleteComment(${item.commentNo})"></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>

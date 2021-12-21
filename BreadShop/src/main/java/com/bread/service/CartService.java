@@ -24,7 +24,14 @@ public class CartService {
 	}
 	//수정
 	public BreadCartVO update(String memberId, String productId, int cartCount) {
-		return null;
+		CartService service = new CartService();
+		BreadCartVO vo = service.searchOne(memberId, productId);
+		
+		return dao.cartUpdate(vo, cartCount);
+	}
+	//단건 조회
+	public BreadCartVO searchOne(String memberId, String productId) {
+		return dao.cartSearchOne(memberId, productId);
 	}
 
 }
