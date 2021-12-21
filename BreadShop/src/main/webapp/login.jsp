@@ -18,6 +18,13 @@
 		background-color: #F5F6F7;
 	}
 
+	#home {
+		position: relative;
+		left: 85%;
+		text-decoration: none;
+		color: black;
+	}
+
 	.login {
 		width: 500px;
 		margin: auto;
@@ -38,15 +45,16 @@
 	}
 
 	.login_btn {
-		width: 450px;
+		width: 480px;
 		height: 30px;
-		margin: 10px 0 0 15px;
+		margin: 10px 0 0 2px;
 		font-size: 24px;
 	}
 </style>
 
 <body>
 	<div class="login">
+		<a href='index.jsp' id='home'>홈으로가기</a>
 		<h1 align="center">LOGIN</h1>
 		<div class="login_form">
 			<form action='login.do' method='post'>

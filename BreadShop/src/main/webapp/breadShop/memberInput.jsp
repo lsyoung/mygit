@@ -66,7 +66,7 @@
 		<ul class="member_table">
 			<form action='../memberinsert.do' method='get'>
 				<div class="member_insert">
-					<li><span>아이디</span><br><input type='text' name='id' class="member_info" placeholder="아이디를 입력하세요">
+					<li><span>아이디</span><br><input type='text' name='id' class="member_info" placeholder="아이디를 입력하세요"><br>
 					</li>
 					<li><span>비밀번호</span><br><input type='password' name='passwd' class="member_info" placeholder="비밀번호를 입력하세요"></li>
 					<li><span>이름</span><br><input type='text' name='name' class="member_info" placeholder="이름을 입력하세요"></li>
@@ -83,5 +83,10 @@
 		</form>
 	</div>
 </body>
+<script>
+function idCheck(){
+	window.open("idCheckForm.jsp","idCheck","width=400,height=350");
+}
+</script>
 
 </html>
