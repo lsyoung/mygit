@@ -14,7 +14,10 @@ public class LogoutController implements Controller {
 		
 		HttpSession session = req.getSession();
 		session.invalidate();
-		req.getRequestDispatcher("index.jsp").forward(req, res);
+		PrintWriter out = res.getWriter();
+		out.write("<script>alert('로그아웃되었습니다!');</script>");
+		
+		out.write("<script>location.href='index.jsp';</script>");
 	}
 
 }
