@@ -36,6 +36,7 @@
 </head>
 
 <body>
+<jsp:include page="../head.jsp"></jsp:include>
 	<div class='border'>
 		<a href='index.jsp' id='home'>홈으로가기</a>
 		<table id="bList" width="800" border="3" bordercolor="lightgray">

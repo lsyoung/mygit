@@ -28,6 +28,7 @@ public class FrontController extends HttpServlet {
 		// 설 cart
 		list.put("/cartInsert.do", new CartInsertController());
 		list.put("/cartList.do", new CartListController());
+		list.put("/cartDelete.do", new CartDeleteController());
 		
 		// 설영
 		list.put("/borderList.do", new BorderListController());

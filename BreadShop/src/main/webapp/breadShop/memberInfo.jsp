@@ -54,6 +54,7 @@
 </style>
 
 <body>
+   <jsp:include page="../head.jsp"></jsp:include>
 	<div class="info">
 		<c:choose>
 			<c:when test="${sessionScope.id == null }">

@@ -56,10 +56,29 @@ width:200px;
 font-size:18px;
 height:35px;
 }
+.fa-star,
+.fa-star-half-empty{
+	color:blue;
+}
+.star-area{
+	border:solid black 2px;
+	width:120px;
+	margin:20px;
+	text-align: center;
+	margin:15px 112px;
+}
+.star{
+	padding:1px;
+	display:inline-block;
+	width:17px;
+}
+
+
 
 </style>
 </head>
 <body>
+
 	<%
 	BreadProductVO vo = (BreadProductVO) request.getAttribute("productOne");
 	
@@ -73,23 +92,25 @@ height:35px;
 			
 			<div class="container-body">
 				<h1><%=vo.getProductName() %></h1>
-					<%=vo.getProductPrice() %>
-				<div>
+				<h2><%=vo.getProductPrice() %></h2>
+					<%=vo.getProductDesc() %>
+				<div class="star-area">
 					<%
-					for(int i=0;i<vo.getProductGrade();i++){
+					for(int i=0;i<(int)vo.getProductGrade();i++){
 					%>	
-						<div class='full-star'>a</div>
+						<div class='star'><i class="fa fa-star"></i></div>
 					<%
 					}
 					
-					if(vo.getProductGrade()-(int)vo.getProductGrade()>0){
+					if(vo.getProductGrade() - (int)vo.getProductGrade() > 0){
 					%>
-						<div class='half-star'></div>
+						<div class='star'><i class="fa fa-star-half-empty"></i></div>
 					<%
 					}
 					%>
 				</div>
 				수량 : <select id="selectCount" onchange="onchangeFnc(event)">
+					<option value='0'>0</option>
 					<option value='1'>1</option>
 					<option value='2'>2</option>
 					<option value='3'>3</option>
@@ -106,7 +127,7 @@ height:35px;
 					<!-- <input type="hidden" name="cartCount" value='1'> -->
 					<input type="hidden" name="memberId" value='${sessionScope.id }'>
 					<input type="hidden" name="productId" value='<%=vo.getProductId()%>'>
-					<input type="text" name="cartCount">
+					<input type="hidden" name="cartCount">
 					<input type="submit" value="장바구니 추가" class="cartBtn">
 				</form>
 			</div>

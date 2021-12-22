@@ -19,15 +19,22 @@ public class CartListController implements Controller {
 		CartService service = new CartService();
 		List<BreadCartVO> list = service.searchList(memberId);
 
+		PrintWriter out = res.getWriter();
+		
 		if (memberId.equals("")) {// 로그인 하지 않은 경우
-			PrintWriter out = res.getWriter();
 			out.println("<script>alert('로그인 후 사용해 주세요'); history.back(); </script>");
 
 		} else {
+			if (list.size() ==0) {
+				out.println("<script>alert('장바구니에 담긴 상품이 없습니다'); history.back(); </script>");
 
-			req.setAttribute("cartList", list);
-			req.getRequestDispatcher("cart/cartList.jsp").forward(req, res);
+			}else {
+				req.setAttribute("cartList", list);
+				req.getRequestDispatcher("cart/cartList.jsp").forward(req, res);
 
+			}
+
+			
 		}
 	}
 

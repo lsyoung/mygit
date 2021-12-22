@@ -56,11 +56,12 @@
 </style>
 
 <body>
+<jsp:include page="../head.jsp"></jsp:include>
 	<div class='border'>
 		<table id="detailBoard" width="800" border="3" bordercolor="lightgray">
 			<tr>
 				<th>NAME</th>
-				<td>${sessionScope.id }</td>
+				<td>${border.borderWriter }</td>
 			</tr>
 			<tr>
 				<th>TITLE</th>

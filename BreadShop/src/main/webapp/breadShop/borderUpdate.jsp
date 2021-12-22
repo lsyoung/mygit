@@ -32,6 +32,7 @@
 </style>
 
 <body>
+<jsp:include page="../head.jsp"></jsp:include>
 	<div class='border'>
 		<form action='borderUpdate.do' method='get'>
 			<input type='hidden' name='borderId' value='${border.borderId }'>
