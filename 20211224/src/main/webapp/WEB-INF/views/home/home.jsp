@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align="center">
-	<div><h1>WellCome to my Home</h1></div>
+	<div><h1>WelCome to my Home</h1></div>
 	<a href="memberList.do">멤버목록보기</a>
 </div>
 </body>
